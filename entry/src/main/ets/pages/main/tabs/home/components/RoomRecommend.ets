@@ -12,7 +12,7 @@ export default struct RoomRecommend {
 
   async aboutToAppear() {
     const res = await getNearbyHouses()
-    this.data.pushData(...res.data)
+    this.data.pushBatchData(res.data)
   }
 
   @Builder
