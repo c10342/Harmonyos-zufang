@@ -11,9 +11,16 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage): void {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    // 1、获取应用窗口对象
+    const win = await windowStage.getMainWindow()
+    // 2、获取屏幕宽高并存储起来
+    const properties = win.getWindowProperties()
+    AppStorage.setOrCreate('windowHeight', properties.windowRect.height);
+    AppStorage.setOrCreate('windowWidth', properties.windowRect.width);
 
     windowStage.loadContent('pages/main/Index', (err) => {
       if (err.code) {
