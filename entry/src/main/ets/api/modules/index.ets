@@ -1,4 +1,4 @@
-import { request } from '../../utils/request';
+import { request } from '../../utils';
 import { HomeData, HouseItem } from '../types';
 
 export const getHomeData = () => request.get<HomeData>('home/info')

@@ -1,5 +1,5 @@
-import { HomeBannerItem, HomeNavItem, HomePlanItem, HomeTileItem } from '../../../../api';
-import { getHomeData } from '../../../../api/modules';
+import { getHomeData, HomeBannerItem, HomeNavItem, HomePlanItem, HomeTileItem } from '../../../../api';
+
 import Ad from './components/Ad';
 import NavList from './components/NavList';
 import PlanList from './components/PlanList';

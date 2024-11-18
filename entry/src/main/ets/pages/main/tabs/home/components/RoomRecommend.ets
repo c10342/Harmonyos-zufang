@@ -1,5 +1,5 @@
 import { getNearbyHouses, HouseItem } from '../../../../../api';
-import { CommonDataSource } from '../../../../../utils/BaseDataSource';
+import { CommonDataSource } from '../../../../../utils';
 
 interface Tag {
   "name": string

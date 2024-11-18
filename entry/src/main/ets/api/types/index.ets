@@ -1,4 +1,4 @@
-export interface BaseRespond<T = any> {
+export interface BaseRespond<T = object | boolean> {
   "code": number,
   "message": string,
   data: T
@@ -36,10 +36,14 @@ export interface HomeData {
   adPicture: string;
 }
 
+export interface Tag {
+  name: string
+}
+
 export interface HouseItem {
   "id": string,
   "housePicture": string,
-  "tags": Array<{ name: string }>,
+  "tags": Array<Tag>,
   "houseTitle": string
   "address": string
   "rentPriceUnit": string

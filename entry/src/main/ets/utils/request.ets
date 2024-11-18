@@ -1,29 +1,32 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from '@ohos/axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from '@ohos/axios';
 import { BaseRespond } from '../api/types';
 import promptAction from '@ohos.promptAction';
 
 
 class Request {
-  private instance!: AxiosInstance;
+  private instance: AxiosInstance;
 
   constructor() {
+    this.instance = axios.create({
+      baseURL: 'http://localhost:6060'
+    });
     this.init()
   }
 
-  service(options: AxiosRequestConfig): any {
+  service<T = object>(options: AxiosRequestConfig): Promise<BaseRespond<T>> {
     return this.instance.request(options)
   }
 
-  get<T = any>(url: string, data?: any): Promise<BaseRespond<T>> {
-    return this.service({
+  get<T = object>(url: string, data?: object): Promise<BaseRespond<T>> {
+    return this.service<T>({
       url,
       data,
       method: 'get'
     })
   }
 
-  post<T = any>(url: string, params?: any): Promise<BaseRespond<T>> {
-    return this.service({
+  post<T = object>(url: string, params?: object): Promise<BaseRespond<T>> {
+    return this.service<T>({
       url,
       params,
       method: 'post'
@@ -31,15 +34,12 @@ class Request {
   }
 
   private init() {
-    this.instance = axios.create({
-      baseURL: 'http://localhost:6060'
-    });
     // 请求拦截
     // this.instance.interceptors.request.use((config) => {
     //   return config
     // })
     // 响应拦截
-    this.instance.interceptors.response.use((response) => {
+    this.instance.interceptors.response.use((response: AxiosResponse) => {
       if (response.data.code === 200) {
         return response.data
       }

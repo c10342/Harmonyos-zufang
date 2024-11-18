@@ -1,4 +1,4 @@
-import { rvp } from '../../../../../utils/common';
+import { rvp } from '../../../../../utils';
 
 @Component
 export default struct SearchBar {
